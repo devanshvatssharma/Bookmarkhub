@@ -216,7 +216,7 @@ http://127.0.0.1:8000/
 
 GitHub: https://github.com/devanshvatssharma
 
-LinkedIn: *(Add your LinkedIn profile link here)*
+LinkedIn: https://www.linkedin.com/in/devansh-sharma-0a2947331?utm_source=share_via&utm_content=profile&utm_medium=member_ios
 
 ---
 
