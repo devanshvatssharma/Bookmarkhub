@@ -1,0 +1,69 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/profile.css"%}">{%endblock%}
+{%block title%}Profile{%endblock%}
+{%block content%}
+
+<div class="profile-wrapper">
+
+  <!-- Identity Card -->
+  <div class="profile-card profile-header-card">
+    <div class="profile-avatar">
+        {{user.username|slice:":1"|upper}}
+    </div>
+    <div class="profile-info">
+      <h2 class="profile-name">{{user.username}}</h2>
+      <div class="profile-meta-group">
+        <div class="profile-meta-item">
+          <span class="meta-label">Email</span>
+          <span class="meta-value">{{user.email}}</span>
+        </div>
+        <div class="profile-meta-item">
+          <span class="meta-label">Joined</span>
+          <span class="meta-value">{{user.date_joined}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Card -->
+  <div class="profile-card">
+    <h3 class="card-title">Statistics</h3>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number">{{bookmarks}}</span>
+        <span class="stat-label">Bookmarks</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{collections}}</span>
+        <span class="stat-label">Collections</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{tags}}</span>
+        <span class="stat-label">Tags</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions Card -->
+  <div class="profile-card">
+    <h3 class="card-title">Actions</h3>
+    <div class="action-list">
+      <a href="{%url "profileupdate" pk=request.user.id%}" class="action-item">Edit Profile</a>
+      <a href="{%url "passwordchange"%}" class="action-item">Change Password</a>
+      <form method="post" action="{%url "logout"%}">
+        {% csrf_token %}
+        <button type="submit" class="action-item logout-action">Logout</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Danger Zone Card -->
+  <div class="profile-card danger-card">
+    <h3 class="card-title danger-title">Danger Zone</h3>
+    <a href="{%url "deleteuser"%}" class="btn-danger-outline">Delete Account</a>
+  </div>
+
+</div>
+
+{%endblock%}

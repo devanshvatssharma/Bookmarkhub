@@ -1,0 +1,63 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{%block title%}{%endblock%}</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <!-- CSS link will go here -->
+   <link rel="stylesheet" href="{%static "css/style.css"%}">
+   {%block linkcss%}{%endblock%}
+</head>
+<body>
+
+  <!-- Main App Layout Container -->
+  <div class="app-container">
+    
+    <!-- Top Navigation Bar -->
+    <header class="app-header">
+      <div class="header-brand">
+        <span class="dot"></span> BOOKMARKHUB
+      </div>
+      
+      <nav class="app-nav">
+        <a href="{%url "dashboard"%}" class="nav-link">Dashboard</a>
+        <a href="{%url "bookmarks"%}" class="nav-link">Bookmarks</a>
+        <a href="{%url "collections"%}" class="nav-link">Collections</a>
+        <a href="{%url "tags"%}" class="nav-link">Tags</a>
+        <a href="{%url "profile"%}" class="nav-link style-profile">Profile</a>
+      </nav>
+    </header>
+
+    <!-- Main Content Canvas -->
+    <main class="app-main">
+      {% if messages %}
+  <div class="messages-container">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        <div class="alert-content">
+          {% if message.tags == 'success' %}
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          {% elif message.tags == 'error' %}
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          {% else %}
+            <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          {% endif %}
+          <span>{{ message }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+      {%block content%}{%endblock%}
+    </main>
+
+  </div>
+
+</body>
+</html>

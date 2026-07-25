@@ -1,0 +1,195 @@
+/* ==========================================================================
+   Bookmark Hub — Delete Account Confirmation Page
+   Theme: Deep Emerald & Mint (with Danger Red Accents)
+   ========================================================================== */
+
+.form-page-wrapper {
+  max-width: 580px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Header & Back Navigation
+   -------------------------------------------------------------------------- */
+.form-header {
+  display: flex;
+  align-items: center;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.back-link:hover {
+  color: var(--emerald-primary);
+  transform: translateX(-2px);
+}
+
+.back-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Delete Confirmation Box Container
+   -------------------------------------------------------------------------- */
+.confirm-delete-container {
+  background-color: var(--bg-card);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.05);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Warning Alert Header */
+.delete-warning-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.warning-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  background-color: #fef2f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--error-color);
+  border: 1px solid #fca5a5;
+}
+
+.warning-icon-wrapper svg {
+  width: 28px;
+  height: 28px;
+}
+
+.delete-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--error-color);
+  letter-spacing: -0.01em;
+}
+
+/* Detail Context Text Block */
+.delete-message {
+  text-align: center;
+  color: var(--text-primary);
+  font-size: 0.975rem;
+  line-height: 1.5;
+  background-color: #fafafa;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.highlight-target {
+  color: var(--text-primary);
+  font-weight: 700;
+  background-color: #fee2e2;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.warning-subtext {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Action Panel Buttons
+   -------------------------------------------------------------------------- */
+.delete-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: #f1f5f9;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  color: var(--text-primary);
+}
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--error-color);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+}
+
+.btn-danger:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .confirm-delete-container {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .delete-actions {
+    flex-direction: column-reverse;
+    gap: 0.65rem;
+  }
+
+  .btn-secondary,
+  .btn-danger {
+    width: 100%;
+  }
+}

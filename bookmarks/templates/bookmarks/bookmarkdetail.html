@@ -1,0 +1,101 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/bookmarkdetail.css"%}">{%endblock%}
+{%block title%}{{bookmark.title}}{%endblock%}
+{%block content%}
+<div class="detail-page-wrapper">
+
+  <!-- Top Action/Navigation Bar -->
+  <div class="detail-header">
+    <a href="{%url "bookmarks"%}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back
+    </a>
+    
+    <div class="detail-actions">
+      <a href="{%url "bookmarkupdate" pk=bookmark.id%}" class="action-btn edit">Edit</a>
+      <a href="{%url "bookmarkdelete" pk=bookmark.id%}" class="action-btn delete">Delete</a>
+    </div>
+  </div>
+
+  <!-- Primary Detail Card Container -->
+  <div class="detail-container">
+    
+    <!-- Title Area -->
+    <div class="detail-title-section">
+      <h2 class="detail-main-title">{{bookmark.title}}</h2>
+    </div>
+
+    <!-- Structured Metadata List -->
+    <div class="metadata-grid">
+      
+      <!-- URL Row -->
+      <div class="meta-row">
+        <span class="meta-label">URL</span>
+        <div class="meta-content">
+          <a href="{{bookmark.url}}" target="_blank" rel="noopener noreferrer" class="meta-url-link">
+            {{bookmark.url}}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Description Row -->
+      <div class="meta-row">
+        <span class="meta-label">Description</span>
+        <div class="meta-content">
+          <p class="meta-description-text">{{bookmark.description}}</p>
+        </div>
+      </div>
+
+      <!-- Visibility Row -->
+      <div class="meta-row">
+        <span class="meta-label">Visibility</span>
+        <div class="meta-content">
+          <!-- Styled as a small security status indicator badge -->
+          <span class="badge visibility-badge status-public">{{bookmark.visibility}}</span>
+        </div>
+      </div>
+
+      <!-- Collections Row -->
+      <div class="meta-row">
+        <span class="meta-label">Collections</span>
+        <div class="meta-content inline-badges">
+            {%for collection in bookmark.collections.all%}
+          <span class="badge collection-badge">{{collection.name}}</span>
+          {%endfor%}
+        </div>
+      </div>
+
+      <!-- Tags Row -->
+      <div class="meta-row">
+        <span class="meta-label">Tags</span>
+        <div class="meta-content tag-list">
+          {%for tag in bookmark.tags.all%}
+          <span class="badge collection-badge">{{tag.name}}</span>
+          {%endfor%}
+        </div>
+      </div>
+
+      <!-- Timestamp Management Blocks -->
+      <div class="meta-timestamps">
+        <div class="timestamp-block">
+          <span class="meta-label">Created At</span>
+          <span class="meta-date">{{bookmark.created_at}}</span>
+        </div>
+        <div class="timestamp-block">
+          <span class="meta-label">Updated At</span>
+          <span class="meta-date">{{bookmark.updated_at}}</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{%endblock%}

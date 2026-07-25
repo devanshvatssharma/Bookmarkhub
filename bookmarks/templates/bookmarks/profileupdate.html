@@ -1,0 +1,55 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/form.css"%}">{%endblock%}
+{%block title%}Update Profile{%endblock%}
+{%block content%}
+<div class="form-page-wrapper">
+
+  <!-- Header Section with Back Navigation -->
+  <div class="form-header">
+    <a href="{%url "profile"%}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Profile
+    </a>
+    <h2 class="form-title">Edit Profile</h2>
+    <p class="form-subtitle">Update your personal account details and public identity.</p>
+  </div>
+
+  <!-- Form Container Card -->
+  <div class="form-container">
+    <form method="post" action="#">
+        {%csrf_token%}
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="id_username" class="form-label">
+          Username <span class="required-indicator">*</span>
+        </label>
+        {{form.username}}
+        <div class="errors">{{form.username.errors}}</div>
+        <span class="help-text">Used for sign-in and displayed on your public profile.</span>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="id_email" class="form-label">
+          Email Address <span class="required-indicator">*</span>
+        </label>
+        {{form.email}}
+        <div class="errors">{{form.email.errors}}</div>
+        <span class="help-text">Used for account recovery and system notifications.</span>
+      </div>
+
+      <!-- Form Action Buttons -->
+      <div class="form-actions">
+        <a href="{%url "profile"%}" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary">Save Changes</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+{%endblock%}

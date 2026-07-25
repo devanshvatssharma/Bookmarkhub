@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Bookmark Hub — Global Base Stylesheet
+   Theme: Deep Emerald & Mint
+   ========================================================================== */
+   html {
+  /* Reserves space for the scrollbar so the layout never shifts */
+  scrollbar-gutter: stable;
+}
+
+:root {
+  /* Color Palette */
+  --emerald-primary: #059669;
+  --emerald-dark: #064e3b;
+  --emerald-hover: #047857;
+  --emerald-light: #ecfdf5;
+  --mint-accent: #10b981;
+  --mint-soft: #d1fae5;
+  --bg-page: #f4f7f5;
+  --bg-card: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --border-color: #e2e8f0;
+  --border-focus: #059669;
+  --error-color: #dc2626;
+  --error-bg: #fef2f2;
+
+  /* Typography */
+  --font-serif: 'Fraunces', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Spacing & Radius */
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --max-width: 1200px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(6, 78, 59, 0.05), 0 2px 4px -2px rgba(6, 78, 59, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(6, 78, 59, 0.08), 0 4px 6px -4px rgba(6, 78, 59, 0.03);
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Container Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   Top Navigation Header
+   -------------------------------------------------------------------------- */
+.app-header {
+  background-color: var(--emerald-dark);
+  color: #ffffff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Brand Identifier */
+.header-brand {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-brand .dot {
+  width: 9px;
+  height: 9px;
+  background-color: var(--mint-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--mint-accent);
+}
+
+/* Navigation Links */
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  color: #a7f3d0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-link.active {
+  color: #ffffff;
+  background-color: rgba(16, 185, 129, 0.2);
+  font-weight: 600;
+}
+
+/* Profile Link Special Styling */
+.nav-link.style-profile {
+  margin-left: 0.5rem;
+  border: 1px solid rgba(167, 243, 208, 0.3);
+  color: #ffffff;
+}
+
+.nav-link.style-profile:hover {
+  background-color: var(--emerald-primary);
+  border-color: var(--emerald-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Main Canvas Container
+   -------------------------------------------------------------------------- */
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Adaptations
+   -------------------------------------------------------------------------- */
+@media (max-width: 680px) {
+  .app-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .app-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nav-link.style-profile {
+    margin-left: 0;
+  }
+
+  .app-main {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* ==========================================================================
+   Global Toast / Flash Messages
+   ========================================================================== */
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-sm);
+  animation: slideInDown 0.25 ease-out;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.alert-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Success Alert (Deep Emerald Palette) */
+.alert-success {
+  background-color: var(--emerald-light);
+  color: var(--emerald-dark);
+  border-color: rgba(5, 150, 105, 0.3);
+}
+
+.alert-success .alert-icon {
+  color: var(--emerald-primary);
+}
+
+/* Error Alert */
+.alert-error,
+.alert-danger {
+  background-color: #fef2f2;
+  color: var(--error-color);
+  border-color: #fecaca;
+}
+
+.alert-error .alert-icon {
+  color: var(--error-color);
+}
+
+/* Info / Default Alert */
+.alert-info {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

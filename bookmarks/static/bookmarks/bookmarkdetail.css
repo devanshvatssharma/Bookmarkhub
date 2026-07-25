@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Bookmark Hub — Bookmark Detail Page
+   Theme: Deep Emerald & Mint
+   ========================================================================== */
+
+.detail-page-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Top Action / Navigation Header
+   -------------------------------------------------------------------------- */
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.back-link:hover {
+  color: var(--emerald-primary);
+  transform: translateX(-2px);
+}
+
+.back-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.action-btn.edit {
+  color: var(--emerald-dark);
+  background-color: var(--emerald-light);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.action-btn.edit:hover {
+  background-color: var(--emerald-primary);
+  color: #ffffff;
+  border-color: var(--emerald-primary);
+}
+
+.action-btn.delete {
+  color: var(--error-color);
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.action-btn.delete:hover {
+  background-color: var(--error-color);
+  color: #ffffff;
+  border-color: var(--error-color);
+}
+
+/* --------------------------------------------------------------------------
+   Primary Detail Container Card
+   -------------------------------------------------------------------------- */
+.detail-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Title Section */
+.detail-title-section {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-main-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--emerald-dark);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+/* --------------------------------------------------------------------------
+   Metadata Grid Structure
+   -------------------------------------------------------------------------- */
+.metadata-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.meta-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.meta-content {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+/* Meta URL Link */
+.meta-url-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--emerald-primary);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  text-decoration: none;
+  line-height: 1.4;
+  word-break: break-all;
+  transition: color 0.15s ease;
+}
+
+.meta-url-link:hover {
+  color: var(--emerald-hover);
+  text-decoration: underline;
+}
+
+.external-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Description Text */
+.meta-description-text {
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+}
+
+/* Badges & Inline Tags */
+.inline-badges,
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.775rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.visibility-badge {
+  text-transform: capitalize;
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  background-color: var(--emerald-light);
+  color: var(--emerald-dark);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
+.collection-badge {
+  background-color: #f1f5f9;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+/* --------------------------------------------------------------------------
+   Timestamps Row
+   -------------------------------------------------------------------------- */
+.meta-timestamps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--border-color);
+  background-color: #fafafa;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+}
+
+.timestamp-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.meta-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .detail-container {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .meta-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .meta-timestamps {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}

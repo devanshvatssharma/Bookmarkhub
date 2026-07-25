@@ -1,0 +1,348 @@
+/* ==========================================================================
+   Bookmark Hub — Bookmarks Index Page
+   Theme: Deep Emerald & Mint
+   ========================================================================== */
+
+.bookmarks-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Page Header
+   -------------------------------------------------------------------------- */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--emerald-dark);
+  letter-spacing: -0.02em;
+}
+
+/* Button override from global base */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--emerald-primary);
+  color: #ffffff;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(5, 150, 105, 0.15);
+}
+
+.btn-primary:hover {
+  background-color: var(--emerald-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(5, 150, 105, 0.25);
+}
+
+.btn-primary svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Search & Filter Controls
+   -------------------------------------------------------------------------- */
+.controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--bg-card);
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Search Box */
+.search-box {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background-color: #fafafa;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-box input:focus {
+  background-color: #ffffff;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--mint-soft);
+}
+
+/* Filter Strip */
+.filter-strip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chevron-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.filter-options {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.filter-options select {
+  padding: 0.5rem 2rem 0.5rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background-color: #fafafa;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%204b5563'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-style;
+  background-position: right 0.6rem center;
+  background-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: all 0.2s ease;
+}
+
+.filter-options select:focus,
+.filter-options select:hover {
+  border-color: var(--emerald-primary);
+  background-color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Bookmarks Data Table
+   -------------------------------------------------------------------------- */
+.table-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.bookmarks-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.bookmarks-table th {
+  background-color: #f8fafc;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.bookmarks-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  font-size: 0.925rem;
+}
+
+.bookmarks-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.bookmarks-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.bookmarks-table tbody tr:hover {
+  background-color: var(--emerald-light);
+}
+
+/* Bookmark Title Link */
+.bookmark-link {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.bookmark-link:hover {
+  color: var(--emerald-primary);
+}
+
+.table-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Table Empty State */
+.table-empty {
+  text-align: center !important;
+  padding: 3rem 1rem !important;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Actions Group */
+.actions-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.action-btn.edit {
+  background-color: #f1f5f9;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.action-btn.edit:hover {
+  background-color: #e2e8f0;
+  color: var(--text-primary);
+}
+
+.action-btn.delete {
+  background-color: var(--error-bg);
+  color: var(--error-color);
+  border: 1px solid #fecaca;
+}
+
+.action-btn.delete:hover {
+  background-color: #fee2e2;
+}
+
+/* --------------------------------------------------------------------------
+   Pagination Controls
+   -------------------------------------------------------------------------- */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.page-nav {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--emerald-primary);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.page-nav:hover:not(.disabled) {
+  background-color: var(--emerald-primary);
+  color: #ffffff;
+  border-color: var(--emerald-primary);
+}
+
+.page-nav.disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: #f8fafc;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Adaptations
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-strip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-options {
+    width: 100%;
+  }
+
+  .filter-options select {
+    flex: 1;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .bookmarks-table {
+    min-width: 500px;
+  }
+}

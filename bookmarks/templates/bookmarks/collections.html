@@ -1,0 +1,115 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/list_items.css"%}">{%endblock%}
+{%block title%}Collections{%endblock%}
+{%block content%}
+<div class="bookmarks-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h2 class="page-title">Collections</h2>
+    <a href="{%url "collectionadd"%}" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Add Collection
+    </a>
+  </div>
+
+  <!-- Controls Panel (Search & Filters) -->
+  <div class="controls-panel">
+    <form method="get" action="#" class="controls-panel">
+      
+      <!-- Search Box -->
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" name="q" placeholder="Search your collections..." aria-label="Search collections" value="{{ request.GET.q|default:'' }}">
+      </div>
+
+      <!-- Filter Strip -->
+      <div class="filter-strip">
+        <span class="filter-label">
+          Sort 
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron-icon">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+        
+        <div class="filter-options">
+
+          <select name="sort" aria-label="Sort configuration" onchange="this.form.submit()">
+            <option value="" {%if request.GET.sort == ""%}selected{%endif%}>Sort By</option>
+            <option value="newest" {%if request.GET.sort == "newest"%}selected{%endif%}>Newest First</option>
+            <option value="oldest" {%if request.GET.sort == "oldest"%}selected{%endif%}>Oldest First</option>
+            <option value="alphabetical" {%if request.GET.sort == "alphabetical"%}selected{%endif%}>A-Z</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" style="display: none;">Search</button>
+    </form>
+  </div>
+
+  <!-- Data Table Container -->
+  <div class="table-container">
+    <table class="bookmarks-table">
+      <thead>
+        <tr>
+          <th>Collection Name</th>
+          <th>Bookmarks Count</th>
+          <th>Created At</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%if collections|length == 0%}
+        <tr>
+  <td colspan="3" class="table-empty">No collections found matching your criteria.</td>
+</tr>
+        {%else%}
+        {%endif%}
+        {%for collection in collections%}
+        <tr>
+          <td>
+            <a href="{%url "bookmarks"%}?q=&visibility=&collection={{collection.id}}&tag=&sort=#" class="bookmark-link">{{collection.name}}</a>
+          </td>
+          <td>
+            <span class="badge count-badge">{{collection.bookmark_set.all|length}}</span>
+          </td>
+          <td class="table-date">{{collection.created_at}}</td>
+          <td class="text-right">
+            <div class="actions-group">
+              <a href="{%url "collectionupdate" pk=collection.id%}" class="action-btn edit">Edit</a>
+              <a href="{%url "collectiondelete" pk=collection.id%}" class="action-btn delete">Delete</a>
+            </div>
+          </td>
+        </tr>
+        {%endfor%}
+        
+      </tbody>
+      
+    </table>
+  
+</div>
+  <!-- Pagination Navigation -->
+  <nav class="pagination" aria-label="Pagination Navigation">
+    {%if page_obj.previous_page%}
+    <a href="{{request.path}}?page={{page_obj.previous_page_number}}" class="page-nav">&lt; Previous</a>
+    {%else%}
+    <a href="#" class="page-nav disabled">&lt; Previous</a>
+    {%endif%}
+
+    {%if page_obj.next_page%}
+    <a href="{{request.path}}?page={{page_obj.next_page_number}}" class="page-nav">Next &gt;</a>
+    {%else%}
+    <a href="#" class="page-nav disabled">Next &gt;</a>
+    {%endif%}
+    
+  </nav>
+
+</div>
+{%endblock%}

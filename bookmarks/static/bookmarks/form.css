@@ -1,0 +1,290 @@
+/* ==========================================================================
+   Bookmark Hub — Universal Form Styles
+   Used across: Bookmarks, Collections, Profile Update, Auth
+   ========================================================================== */
+
+.form-page-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header & Back Link */
+.form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+  width: fit-content;
+}
+
+.back-link:hover {
+  color: var(--emerald-primary);
+  transform: translateX(-2px);
+}
+
+.back-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.page-title,
+.form-title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--emerald-dark);
+  letter-spacing: -0.02em;
+}
+
+.form-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Card Container */
+.form-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Field Groups & Labels */
+.field,
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label,
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.required-indicator {
+  color: var(--error-color);
+  margin-left: 0.15rem;
+}
+
+/* Inputs & Form Controls */
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="url"],
+.field input[type="password"],
+.field textarea,
+.field select,
+.form-group input,
+.input-wrapper input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background-color: #fafafa;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.field textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%204b5563'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+}
+
+/* Focus States */
+.field input:focus,
+.field textarea:focus,
+.field select:focus,
+.form-group input:focus,
+.input-wrapper input:focus {
+  background-color: #ffffff;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--mint-soft);
+}
+
+/* Helper Text & Hints */
+.field-help,
+.help-text {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+}
+
+/* Multi-Select Customization */
+.field select[multiple] {
+  height: auto;
+  min-height: 120px;
+  padding: 0.5rem;
+  background-image: none;
+}
+
+.field select[multiple] option {
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.15rem;
+  cursor: pointer;
+}
+
+.field select[multiple] option:checked {
+  background-color: var(--emerald-primary) linear-gradient(0deg, var(--emerald-primary) 0%, var(--emerald-primary) 100%);
+  color: #ffffff;
+}
+
+.select-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.select-hint kbd {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background-color: #e2e8f0;
+  color: var(--text-primary);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Django Error Handling */
+.errorlist,
+.error,
+.errors {
+  font-size: 0.8rem;
+  color: var(--error-color);
+}
+
+.errorlist,
+.error ul,
+.errors ul {
+  list-style: none;
+  margin-top: 0.25rem;
+}
+
+.errorlist li,
+.error li,
+.errors li {
+  background-color: var(--error-bg);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #fecaca;
+  margin-top: 0.25rem;
+}
+
+/* Form Actions & Buttons */
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  margin-top: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: #f1f5f9;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  color: var(--text-primary);
+}
+
+.submit,
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--emerald-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(5, 150, 105, 0.2);
+}
+
+.submit:hover,
+.btn-primary:hover {
+  background-color: var(--emerald-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(5, 150, 105, 0.3);
+}
+
+.submit:active,
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .form-container {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 0.65rem;
+  }
+
+  .btn-secondary,
+  .submit,
+  .btn-primary {
+    width: 100%;
+  }
+}

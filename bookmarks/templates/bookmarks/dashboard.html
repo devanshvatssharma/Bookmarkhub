@@ -1,0 +1,64 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/dashboard.css"%}">{%endblock%}
+{%block title%}Dashboard{%endblock%}
+{%block content%}
+<div class="dashboard-wrapper">
+  
+  <!-- Welcome Header -->
+  <div class="dash-welcome">
+    <h2>Welcome, {{request.user.username}} 👋</h2>
+    <p>Here is a snapshot of your library.</p>
+  </div>
+
+  <!-- Metric Overview Cards -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <span class="metric-label">Total Bookmarks</span>
+      <span class="metric-value">{{bookmark_count}}</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-label">Total Collections</span>
+      <span class="metric-value">{{collection_count}}</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-label">Total Tags</span>
+      <span class="metric-value">{{tag_count}}</span>
+    </div>
+  </div>
+
+  <!-- Recent Activity Section -->
+  <div class="dash-section">
+    <div class="section-header">
+      <h3 class="section-title">Recent Bookmarks</h3>
+      
+      <!-- Call to Action Button -->
+      <a href="{%url "bookmarkadd"%}" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        Add Bookmark
+      </a>
+    </div>
+
+    <!-- Recent Items List -->
+    <div class="recent-list">
+        {% if recent_bookmarks|length == 0%}
+        <div class="Zero recents">No Recent Bookmarks</div>
+        {%else%}
+        {%for bookmark in recent_bookmarks%}
+      <div class="recent-item">
+        <div class="item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        </div>
+        <div class="item-details">
+          <a href="{%url "bookmarkdetail" pk=bookmark.id%}" class="item-title">{{bookmark.title}}</a>
+          <span class="item-meta">Created: {{bookmark.created_at}}</span>
+        </div>
+      </div>
+      {%endfor%}
+      {%endif%}
+
+</div>
+{%endblock%}

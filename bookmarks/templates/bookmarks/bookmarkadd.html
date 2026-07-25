@@ -1,0 +1,84 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/form.css"%}">{%endblock%}
+{%block title%}Add a Bookmark{%endblock%}
+{%block content%}
+<div class="form-page-wrapper">
+
+  <div class="form-header">
+    <a href="{%url "bookmarks"%}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Bookmarks
+    </a>
+    <h2 class="page-title">Add Bookmark</h2>
+  </div>
+
+  <div class="form-container">
+    <form method="post" action="">
+        {% csrf_token %}
+      <div class="field">
+        <label for="id_title">Title</label>
+        {{form.title}}
+        {{form.title.errors}}
+        <span class="field-help">Give your bookmark a clear, recognizable name.</span>
+      </div>
+
+      <div class="field">
+        <label for="id_url">URL</label>
+        {{form.url}}
+        {{form.url.errors}}
+        <span class="field-help">Paste the full link location here.</span>
+      </div>
+
+      <div class="field">
+        <label for="id_description">Description</label>
+        {{form.description}}
+        {{form.description.errors}}
+    </div>
+    <div class="field">
+      <label>Visibility</label>
+      {{form.visibility}}
+      {{form.visibility.errors}}
+    </div>
+    
+    <div class="field">
+        <label for="id_tag">Tag</label>
+        {{form.tags}}
+        {{form.tags.errors}}
+      </div>
+      <div class="field">
+  <label for="id_tag">Tags</label>
+  {{ form.tags }}
+  <span class="select-hint">
+    Hold <kbd>Ctrl</kbd> (or <kbd>⌘ Cmd</kbd> on Mac) to select or deselect multiple tags.
+  </span>
+  {{ form.tags.errors }}
+</div>
+
+      <div class="field">
+        <label for="id_collection">Collection</label>
+        {{form.collections}}
+        {{form.collections.errors}}
+      </div>
+<div class="field">
+  <label for="id_tag">Tags</label>
+  {{ form.tags }}
+  <span class="select-hint">
+    Hold <kbd>Ctrl</kbd> (or <kbd>⌘ Cmd</kbd> on Mac) to select or deselect multiple tags.
+  </span>
+  {{ form.tags.errors }}
+</div>
+
+      <div class="form-actions">
+        <a href="{%url "bookmarks"%}" class="btn-secondary">Cancel</a>
+        <button type="submit" class="submit">Save Bookmark</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+{%endblock%}

@@ -1,0 +1,139 @@
+{%extends "base.html"%}
+{%load static%}
+{%block title%}Bookmarks{%endblock%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/list_items.css"%}">{%endblock%}
+{%block content%}
+<div class="bookmarks-wrapper">
+
+  <div class="page-header">
+    <h2 class="page-title">Bookmarks</h2>
+  <a href="{%url "bookmarkadd"%}" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Add Bookmark
+    </a>
+  </div>
+
+  <div class="controls-panel">
+    <form method="get" action="#" class="controls-panel">
+  
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <input type="text" name="q" placeholder="Search your bookmarks..." aria-label="Search bookmarks" value="{{ request.GET.q|default:'' }}">
+  </div>
+
+  <div class="filter-strip">
+    <span class="filter-label">
+      Filter 
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </span>
+    
+    <div class="filter-options">
+      <select name="visibility" onchange="this.form.submit()">
+    <option value="">Visibility</option>
+    <option value="public"
+        {% if request.GET.visibility == "public" %}selected{% endif %}>
+        Public
+    </option>
+    <option value="private"
+        {% if request.GET.visibility == "private" %}selected{% endif %}>
+        Private
+    </option>
+</select>
+
+      <select name="collection" onchange="this.form.submit()">
+    <option value="">Collection</option>
+    {% for collection in collections %}
+    <option value="{{ collection.id }}"
+        {% if request.GET.collection == collection.name %}selected{% endif %}>
+        {{ collection.name }}
+    </option>
+    {% endfor %}
+</select>
+
+      <select name="tag" onchange="this.form.submit()">
+    <option value="">Tag</option>
+    {% for tag in tags %}
+    <option value="{{ tag.id }}"
+        {% if request.GET.tag == tag.name %}selected{% endif %}>
+        {{ tag.name }}
+    </option>
+    {% endfor %}
+</select>
+
+      <select name="sort" onchange="this.form.submit()">
+    <option value="">Sort By</option>
+    <option value="newest"
+        {% if request.GET.sort == "newest" %}selected{% endif %}>
+        Newest First
+    </option>
+    <option value="oldest"
+        {% if request.GET.sort == "oldest" %}selected{% endif %}>
+        Oldest First
+    </option>
+    <option value="alphabetical"
+        {% if request.GET.sort == "alphabetical" %}selected{% endif %}>
+        A-Z
+    </option>
+</select>
+    </div>
+  </div>
+
+  <button type="submit" style="display: none;">Search</button>
+</form>
+  </div>
+
+  <div class="table-container">
+    <table class="bookmarks-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Created At</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%if bookmarks|length == 0%}
+        <tr>
+  <td colspan="3" class="table-empty">No bookmarks found matching your criteria.</td>
+</tr>
+        {%else%}
+        {%for bookmark in bookmarks%}
+        <tr>
+          <td>
+            <a href="{%url "bookmarkdetail" pk=bookmark.id%}" class="bookmark-link">{{bookmark.title}}</a>
+          </td>
+          <td class="table-date">{{bookmark.created_at}}</td>
+          <td class="text-right">
+            <div class="actions-group">
+              <a href="{%url "bookmarkupdate" pk=bookmark.id%}" class="action-btn edit">Edit</a>
+              <a href="{%url "bookmarkdelete" pk=bookmark.id%}" class="action-btn delete">Delete</a>
+            </div>
+          </td>
+        </tr>
+        {%endfor%}
+        {%endif%}
+      </tbody>
+    </table>
+  </div>
+
+  <nav class="pagination" aria-label="Pagination Navigation">
+    {%if page_obj.has_previous%}
+    <a href="{{request.path}}?page={{page_obj.previous_page_number}}" class="page-nav ">&lt; Previous</a>
+    {%else%}
+    <a href="#" class="page-nav disabled">&lt; Previous</a>
+    {%endif%}
+    {%if page_obj.has_next%}
+    <a href="{{request.path}}?page={{page_obj.next_page_number}}" class="page-nav">&lt; Next</a>
+    {%else%}
+    <a href="#" class="page-nav disabled">Next &gt;</a>
+    {%endif%}
+  </nav>
+
+</div>
+{%endblock%}

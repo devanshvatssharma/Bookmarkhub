@@ -1,0 +1,48 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/form.css"%}">{%endblock%}
+{%block title%}Edit Tag{%endblock%}
+{%block content%}
+
+<div class="form-page-wrapper">
+
+  <!-- Header Section with Back Navigation -->
+  <div class="form-header">
+    <a href="{%url "tags"%}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Tags
+    </a>
+    <h2 class="form-title">Edit Tag</h2>
+    <p class="form-subtitle">Update the settings and display title for this tag.</p>
+  </div>
+
+  <!-- Form Container Card -->
+  <div class="form-container">
+    <form method="post" action="#">
+        {% csrf_token %}
+      <!-- Single Name Field Wrapper -->
+      <div class="form-group">
+        <label for="id_name" class="form-label">
+          Tag Name <span class="required-indicator">*</span>
+        </label>
+        {{form.name}}
+        <div class="errors">{{form.name.errors}}</div>
+        </div>
+        <span class="help-text">Updating this name will instantly reflect across all 14 linked bookmarks.</span>
+      </div>
+
+      <!-- Form Action Buttons -->
+      <div class="form-actions">
+        <a href="{%url "tags"%}" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary">Update Tag</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+{%endblock%}

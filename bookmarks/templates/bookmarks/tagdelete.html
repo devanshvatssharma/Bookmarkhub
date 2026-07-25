@@ -1,0 +1,51 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/deletionconfirm.css"%}">{%endblock%}
+{%block title%}Delete Tag{%endblock%}
+{%block content%}
+<div class="form-page-wrapper">
+
+  <!-- Minimal Header Navigation -->
+  <div class="form-header">
+    <a href="#" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Cancel and Go Back
+    </a>
+  </div>
+
+  <!-- Delete Confirmation Box Card -->
+  <div class="form-container confirm-delete-container">
+    <form method="post" action="#">
+      {% csrf_token %}
+      <!-- Warning Alert Header -->
+      <div class="delete-warning-header">
+        <div class="warning-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <h2 class="delete-title">Delete Tag?</h2>
+      </div>
+
+      <!-- Detail Context Text Block -->
+      <div class="delete-message">
+        <p>Are you sure you want to permanently delete the tag <strong class="highlight-target">{{object.name}}</strong>?</p>
+        <p class="warning-subtext">This action cannot be undone. It will remove this tag from all your bookmarks entirely.</p>
+      </div>
+
+      <!-- Action Panel Buttons -->
+      <div class="form-actions delete-actions">
+        <a href="{%url "tags"%}" class="btn-secondary">Cancel</a>
+        <button type="submit" class="submit btn-danger">Permanently Delete</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+{%endblock%}

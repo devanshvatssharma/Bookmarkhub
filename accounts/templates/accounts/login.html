@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookmark Hub — Welcome back</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'accounts/register.css' %}">
+
+</head>
+<body>
+
+  <div class="shell">
+
+    <!-- Left: brand / identity panel -->
+    <div class="panel">
+      <div>
+        <div class="brand"><span class="dot"></span> BOOKMARK HUB</div>
+        <div class="panel-copy">
+          <h1>Welcome back to your central web archive.</h1>
+          <p>Access your curated collections, filter by tags, and seamlessly manage your saved bookmarks.</p>
+        </div>
+
+        <div class="ribbons" aria-hidden="true">
+          <div class="ribbon r1"><span>#BOOKMARKS</span></div>
+          <div class="ribbon r2"><span>#COLLECTIONS</span></div>
+          <div class="ribbon r3"><span>#TAGS</span></div>
+        </div>
+      </div>
+
+      <div class="panel-foot">
+        ORGANIZED BY TAGS &nbsp;·&nbsp; CURATED COLLECTIONS &nbsp;·&nbsp; SAVED FOREVER
+      </div>
+    </div>
+
+    <!-- Right: login card -->
+    <div class="card-side">
+
+      <div class="card-eyebrow">
+        <span>Member Sign In</span>
+        <span class="stamp">AUTHENTICATION</span>
+      </div>
+
+      <h2 class="card-title">Sign in to your account</h2>
+      <p class="card-sub">Need a new account? <a href="{% url "register_page" %}">Create an account here</a></p>
+
+      <form action="#" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="field">
+          <label>{{field.label}}</label>
+          {{field}}
+          <div class="errors">{{field.errors}}</div>
+        </div>
+        {% endfor %}
+        
+        <button type="submit" class="submit">
+          Access my shelf
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/>
+            <path d="M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

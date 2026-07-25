@@ -1,0 +1,47 @@
+{%extends "base.html"%}
+{%load static%}
+{%block linkcss%}<link rel="stylesheet" href="{%static "bookmarks/form.css"%}">{%endblock%}
+{%block title%}Add a Collection{%endblock%}
+{%block content%}
+<div class="form-page-wrapper">
+
+  <!-- Header Section with Back Navigation -->
+  <div class="form-header">
+    <a href="{%url "collections"%}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Collections
+    </a>
+    <h2 class="form-title">Create New Collection</h2>
+    <p class="form-subtitle">Group your bookmarks under a unified subject or project theme.</p>
+  </div>
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <form method="post" action="#">
+      {% csrf_token %}
+      <!-- Single Name Field Wrapper -->
+      <div class="form-group">
+        <label for="id_name" class="form-label">
+          Collection Name <span class="required-indicator">*</span>
+        </label>
+        <div class="input-wrapper">
+          {{form.name}}
+        </div>
+    <div class="error">{{form.name.errors}}</div>
+        <span class="help-text">Choose a concise name that describes the contents of this collection.</span>
+      </div>
+
+      <!-- Form Action Buttons -->
+      <div class="form-actions">
+        <a href="{%url "collections"%}" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary">Save Collection</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+{%endblock%}
