@@ -15,7 +15,7 @@ class LoginUserView(LoginView):
         messages.success(self.request,"Logged in successfully!")
         return super().form_valid(form)
     
-        
+
 def register_view(request):
     if request.method=="GET":
         if request.user.is_authenticated:
@@ -44,3 +44,7 @@ class ChangePasswordView(PasswordChangeView):
         messages.success(self.request,"Password change successfully!!")
         return super().form_valid(form)
     
+def home(request):
+    if request.user.is_authenticated:
+        return redirect("dashboard")
+    return redirect("login_page")
