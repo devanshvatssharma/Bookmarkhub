@@ -44,13 +44,8 @@
       {{form.visibility.errors}}
     </div>
     
-    <div class="field">
-        <label for="id_tag">Tag</label>
-        {{form.tags}}
-        {{form.tags.errors}}
-      </div>
       <div class="field">
-  <label for="id_tag">Tags</label>
+  <label for="id_tag">Tag</label>
   {{ form.tags }}
   <span class="select-hint">
     Hold <kbd>Ctrl</kbd> (or <kbd>⌘ Cmd</kbd> on Mac) to select or deselect multiple tags.
@@ -61,16 +56,12 @@
       <div class="field">
         <label for="id_collection">Collection</label>
         {{form.collections}}
+        <span class="select-hint">
+    Hold <kbd>Ctrl</kbd> (or <kbd>⌘ Cmd</kbd> on Mac) to select or deselect multiple Collections.
+  </span>
         {{form.collections.errors}}
       </div>
-<div class="field">
-  <label for="id_tag">Tags</label>
-  {{ form.tags }}
-  <span class="select-hint">
-    Hold <kbd>Ctrl</kbd> (or <kbd>⌘ Cmd</kbd> on Mac) to select or deselect multiple tags.
-  </span>
-  {{ form.tags.errors }}
-</div>
+
 
       <div class="form-actions">
         <a href="{%url "bookmarks"%}" class="btn-secondary">Cancel</a>
