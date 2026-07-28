@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2*6d@yum19w1x0=t9em^4ntem7y$jv=-p!h-_9yz9&xxkipeba'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    "bookmarkhub.onrender.com",
+    # "bookmarkhub.onrender.com",
 ]
 
 
