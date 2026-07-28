@@ -2,6 +2,9 @@
 
 BookmarkHub is a full-stack Django web application that helps users organize and manage their bookmarks efficiently. It provides a secure authentication system, personal dashboard, collections, tags, search, filtering, pagination, and profile management.
 
+**Live Application:** https://bookmarkhub-h7yd.onrender.com
+
+> **Note:** This application is hosted on Render's free tier. The first request after inactivity may take 30–60 seconds while the server wakes up.
 ---
 
 ## ✨ Features
